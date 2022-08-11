@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Hash;
 use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -15,7 +16,7 @@ class UserController extends Controller
         $user = User::find($id);
 
         if (!$user) {
-            return "No such user (" . $id . ")";         
+            return response("No such user (" . $id . ")", 404); 
         }
 
         return view('index', compact('user'));
@@ -29,7 +30,11 @@ class UserController extends Controller
             $user = User::find($request->id);
 
             if (!$user) {
-                return "No such user (" . $request->id . ")";         
+                return response("No such user (" . $request->id . ")", 404); 
+            }
+
+            if (!Hash::check($request->password, $user->password)) {
+                return response('Invalid password', 401);
             }
 
             $user->appendComments($request->comments);
