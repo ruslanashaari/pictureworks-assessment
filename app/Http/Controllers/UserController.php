@@ -9,10 +9,10 @@ class UserController extends Controller
 {
     public function index(int $id = null)
     {
-        try {
-            $user = User::find($id);          
-        } catch (Exception $e) {
-            return "No such user (" . $id . ")";
+        $user = User::find($id);
+
+        if (!$user) {
+            return "No such user (" . $id . ")";         
         }
 
         return view('index', compact('user'));
