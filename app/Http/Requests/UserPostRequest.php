@@ -29,4 +29,13 @@ class UserPostRequest extends FormRequest
             'password'      =>  'required',
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'id.required' => 'Missing key/value for id',
+            'id.comments' => 'Missing key/value for comments',
+            'id.password' => 'Missing key/value for password',
+        ];
+    }
 }
