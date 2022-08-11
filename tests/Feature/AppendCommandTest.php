@@ -33,4 +33,12 @@ class AppendCommandTest extends TestCase
             'comments'  =>  $user->comments . ' apple',
         ]);
     }
+
+    public function test_with_non_existing_user()
+    {
+        $this->artisan('user:comment 99 apple')
+                ->expectsOutput('No such user (99)')
+                ->doesntExpectOutput('Ok')
+                ->assertExitCode(0);
+    }
 }
