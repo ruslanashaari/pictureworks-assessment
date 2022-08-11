@@ -22,6 +22,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 255)->nullable();
             $table->text('comments');
+            $table->string('password');
             $table->timestamps();
         });
     }

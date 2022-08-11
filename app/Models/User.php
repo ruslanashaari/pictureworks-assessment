@@ -19,6 +19,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'comments',
+        'password',
     ];
 
     public function appendComments(string $comments)
