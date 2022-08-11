@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use Exception;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserPostRequest;
@@ -21,13 +23,23 @@ class UserController extends Controller
 
     public function store(UserPostRequest $request)
     {
-        $user = User::find($request->id);
+        try {
+            DB::beginTransaction();
 
-        if (!$user) {
-            return "No such user (" . $request->id . ")";         
+            $user = User::find($request->id);
+
+            if (!$user) {
+                return "No such user (" . $request->id . ")";         
+            }
+
+            $user->appendComments($request->comments);
+
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+
+            return abort(500, 'Could not update database: ' . $e->getMessage());
         }
-
-        $user->appendComments($request->comments);
 
         return view('index', compact('user'));
     }
