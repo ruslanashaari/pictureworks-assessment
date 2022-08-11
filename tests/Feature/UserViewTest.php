@@ -15,11 +15,12 @@ class UserViewTest extends TestCase
     {
         $user = User::create([
             'name'      =>  'John Doe',
-            'comments'  =>  'Name is John Doe'
+            'comments'  =>  'Name is John Doe',
+            'password'  =>  '720DF6C2482218518FA20FDC52D4DED7ECC043AB'
         ]);
 
         $response = $this->get('/user/' . $user->id);
-        $response->assertStatus(404)
+        $response->assertStatus(200)
                     ->assertViewIs('index');
     }
 

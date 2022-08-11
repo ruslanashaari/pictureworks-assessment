@@ -13,7 +13,8 @@ class UserPostTest extends TestCase
     {
         $user = User::create([
             'name'      =>  'John Doe',
-            'comments'  =>  'Software Developer'
+            'comments'  =>  'Software Developer',
+            'password'  =>  bcrypt('720DF6C2482218518FA20FDC52D4DED7ECC043AB')
         ]);
 
         $data = [
@@ -42,7 +43,7 @@ class UserPostTest extends TestCase
         ];
 
         $response = $this->post('/user', $data);
-        $response->assertStatus(200)
+        $response->assertStatus(404)
                     ->assertSeeText('No such user (999)');
     }
 
@@ -50,7 +51,8 @@ class UserPostTest extends TestCase
     {
         $user = User::create([
             'name'      =>  'John Doe',
-            'comments'  =>  'Software Developer'
+            'comments'  =>  'Software Developer',
+            'password'  =>  bcrypt('720DF6C2482218518FA20FDC52D4DED7ECC043AB')
         ]);
 
         $data = [

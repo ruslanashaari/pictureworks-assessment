@@ -15,7 +15,8 @@ class AppendCommandTest extends TestCase
     {
         $user = User::create([
             'name'      =>  'John Doe',
-            'comments'  =>  'Name is John Doe'
+            'comments'  =>  'Name is John Doe',
+            'password'  =>  bcrypt('720DF6C2482218518FA20FDC52D4DED7ECC043AB')
         ]);
 
         $this->artisan('user:comment ' . $user->id . ' apple')
@@ -34,7 +35,7 @@ class AppendCommandTest extends TestCase
     {
         $this->artisan('user:comment 99 apple')
                 ->expectsOutput('No such user (99)')
-                ->doesntExpectOutput('Ok')
+                ->doesntExpectOutput('OK')
                 ->assertExitCode(0);
     }
 }
