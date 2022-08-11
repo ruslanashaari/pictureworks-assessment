@@ -24,7 +24,7 @@ class UserController extends Controller
         $user = User::find($request->id);
 
         if (!$user) {
-            return "No such user (" . $id . ")";         
+            return "No such user (" . $request->id . ")";         
         }
 
         $user->appendComments($request->comments);
