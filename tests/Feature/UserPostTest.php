@@ -32,4 +32,17 @@ class UserPostTest extends TestCase
             'comments'  =>  $user->comments . ' and Investor',
         ]);
     }
+
+    public function test_append_comment_non_existing_user()
+    {
+        $data = [
+            'id'        =>  999,
+            'comments'  =>  ' and Investor',
+            'password'  =>  'sahdsadh77868'
+        ];
+
+        $response = $this->post('/user', $data);
+        $response->assertStatus(200)
+                    ->assertSeeText('No such user (999)');
+    }
 }
