@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Http\Requests\UserPostRequest;
 
 class UserController extends Controller
 {
@@ -16,5 +17,16 @@ class UserController extends Controller
         }
 
         return view('index', compact('user'));
+    }
+
+    public function store(UserPostRequest $request)
+    {
+        $user = User::find($request->id);
+
+        if (!$user) {
+            return "No such user (" . $id . ")";         
+        }
+
+        $user->appendComments($request->comments);
     }
 }
