@@ -19,7 +19,7 @@ class AppendCommandTest extends TestCase
         ]);
 
         $this->artisan('user:comment ' . $user->id . ' apple')
-                ->expectsOutput('Ok')
+                ->expectsOutput('OK')
                 ->doesntExpectOutput('No such user (' . $user->id . ')')
                 ->assertExitCode(0);
 

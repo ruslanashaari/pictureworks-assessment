@@ -24,7 +24,7 @@ class UserPostTest extends TestCase
 
         $response = $this->post('/user', $data);
         $response->assertStatus(200)
-                    ->assertViewIs('index');
+                    ->assertSeeText('OK');
 
         $this->assertDatabaseHas('users', [
             'id'        =>  $user->id,
@@ -61,7 +61,7 @@ class UserPostTest extends TestCase
 
         $response = $this->json('POST', '/user', $data);
         $response->assertStatus(200)
-                    ->assertViewIs('index');
+                    ->assertSeeText('OK');
 
         $this->assertDatabaseHas('users', [
             'id'        =>  $user->id,
