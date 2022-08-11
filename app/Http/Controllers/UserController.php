@@ -28,5 +28,7 @@ class UserController extends Controller
         }
 
         $user->appendComments($request->comments);
+
+        return view('index', compact('user'));
     }
 }
