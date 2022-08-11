@@ -15,7 +15,7 @@
                 <img src="{{ asset('images/users/' . $user->id . '.jpg') }}" alt="" />
             </span>
             <h1>{{ $user->name ?? 'Not available' }}</h1>
-            <p>{{ $user->comments ? nl2br($user->comments) : 'Not available'</p>
+            <p>{{ $user->comments ? nl2br($user->comments) : 'Not available' }}</p>
         </header>
     </section>
     <footer id="footer">
