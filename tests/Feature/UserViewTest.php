@@ -19,14 +19,14 @@ class UserViewTest extends TestCase
         ]);
 
         $response = $this->get('/user/' . $user->id);
-        $response->assertStatus(200)
+        $response->assertStatus(404)
                     ->assertViewIs('index');
     }
 
     public function test_non_existing_user()
     {
         $response = $this->get('/user/99');
-        $response->assertStatus(200)
+        $response->assertStatus(404)
                     ->assertSeeText('No such user (99)');
     }
 }
