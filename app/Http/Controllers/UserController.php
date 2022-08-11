@@ -41,6 +41,6 @@ class UserController extends Controller
             return abort(500, 'Could not update database: ' . $e->getMessage());
         }
 
-        return view('index', compact('user'));
+        return response('OK', 200);
     }
 }

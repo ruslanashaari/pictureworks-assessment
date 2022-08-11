@@ -36,7 +36,7 @@ class UserComments extends Command
         } else {
             $user->appendComments($this->argument('comment'));
 
-            $this->info('Ok');
+            $this->info('OK');
         }
 
     }
