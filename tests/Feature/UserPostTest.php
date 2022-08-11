@@ -23,7 +23,8 @@ class UserPostTest extends TestCase
         ];
 
         $response = $this->post('/user', $data);
-        $response->assertStatus(200);
+        $response->assertStatus(200)
+                    ->assertViewIs('index');
 
         $this->assertDatabaseHas('users', [
             'id'        =>  $user->id,
