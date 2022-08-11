@@ -26,5 +26,11 @@ class AppendCommandTest extends TestCase
                 ->expectsOutput('Ok')
                 ->doesntExpectOutput('No such user (' . $user->id . ')')
                 ->assertExitCode(0);
+
+        $this->assertDatabaseHas('users', [
+            'id'        =>  $user->id,
+            'name'      =>  $user->name,
+            'comments'  =>  $user->comments . ' apple',
+        ]);
     }
 }
