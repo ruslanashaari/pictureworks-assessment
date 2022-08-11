@@ -10,11 +10,7 @@ use Tests\TestCase;
 class AppendCommandTest extends TestCase
 {
     use RefreshDatabase;
-    /**
-     * A basic feature test example.
-     *
-     * @return void
-     */
+
     public function test_with_existing_user()
     {
         $user = User::create([
