@@ -34,6 +34,25 @@ class UserPostTest extends TestCase
         ]);
     }
 
+    public function test_append_comment_with_wrong_password()
+    {
+        $user = User::create([
+            'name'      =>  'John Doe',
+            'comments'  =>  'Software Developer',
+            'password'  =>  bcrypt('720DF6CS482218518FA20FDC52D4DED7ECC043AB')
+        ]);
+
+        $data = [
+            'id'        =>  $user->id,
+            'comments'  =>  ' and Investor',
+            'password'  =>  '720DF6C2482218518FA20FDC52D4DED7ECC043AB'
+        ];
+
+        $response = $this->post('/user', $data);
+        $response->assertStatus(401)
+                    ->assertSeeText('Invalid password');
+    }
+
     public function test_append_comment_with_non_existing_user()
     {
         $data = [
