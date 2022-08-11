@@ -34,6 +34,7 @@ class UserPostRequest extends FormRequest
     {
         return [
             'id.required' => 'Missing key/value for id',
+            'id.integer'  => 'Invalid id',
             'id.comments' => 'Missing key/value for comments',
             'id.password' => 'Missing key/value for password',
         ];
