@@ -24,5 +24,11 @@ class UserPostTest extends TestCase
 
         $response = $this->post('/user', $data);
         $response->assertStatus(200);
+
+        $this->assertDatabaseHas('users', [
+            'id'        =>  $user->id,
+            'name'      =>  $user->name,
+            'comments'  =>  $user->comments . ' and Investor',
+        ]);
     }
 }
